@@ -1,20 +1,19 @@
 package core;
 
+import groovy.json.internal.IO;
+
 import java.io.IOException;
-import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.util.*;
 
-import static core.Bot.bot;
-import static core.TimeSchedule.*;
+import static core.Bot.*;
+
 
 public class Main {
     private static LocalDateTime ldt = LocalDateTime.now();
 
-    public static void main(String args[]) throws ParseException {
-        task();
-    }
-    static void start() throws IOException{
+    public static void main(String args[]) throws IOException {
+        System.out.println(curriculum(time()));
         bot();
     }
 
@@ -23,11 +22,10 @@ public class Main {
         int month = ldt.getMonth().getValue();
         int dayofmonth = ldt.getDayOfMonth();
         int n = 0;
-        int num = 0;
 
         List<LocalDateTime> time = new ArrayList<>();
         time.add(LocalDateTime.of(year,month,dayofmonth,9,45));
-        for (int i=0; i<5; i++){
+        for (int i=0; i<7; i++){
             time.add(time.get(n).plusMinutes(50));
             n++;
             time.add(time.get(n).plusMinutes(10));
@@ -37,31 +35,20 @@ public class Main {
                 n++;
             }
         }
-        if (ldt.isAfter(time.get(0)) && ldt.isBefore(time.get(1))){
-            num = 1;
-        } else if (ldt.isAfter(time.get(1)) && ldt.isBefore(time.get(2))){
-            num = 2;
-        } else if (ldt.isAfter(time.get(2)) && ldt.isBefore(time.get(3))){
-            num = 3;
-        } else if (ldt.isAfter(time.get(3)) && ldt.isBefore(time.get(4))){
-            num = 4;
-        } else if (ldt.isAfter(time.get(4)) && ldt.isBefore(time.get(5))){
-            num = 5;
-        } else if (ldt.isAfter(time.get(5)) && ldt.isBefore(time.get(6))){
-            num = 6;
-        } else if (ldt.isAfter(time.get(6)) && ldt.isBefore(time.get(7))){
-            num = 7;
-        } else if (ldt.isAfter(time.get(7)) && ldt.isBefore(time.get(8))){
-            num = 8;
-        } else if (ldt.isAfter(time.get(8)) && ldt.isBefore(time.get(9))){
-            num = 9;
-        } else if (ldt.isAfter(time.get(9)) && ldt.isBefore(time.get(10))){
-            num = 10;
-        } else if (ldt.isAfter(time.get(10)) && ldt.isBefore(time.get(11))){
-            num = 11;
-        } else if (ldt.isAfter(time.get(11)) && ldt.isBefore(time.get(12))){
-            num = 12;
+        int num = 0;
+        int x = 0;
+        int y = 1;
+
+        for (int i=0; i<12; i++) {
+            if (ldt.isAfter(time.get(x)) && ldt.isBefore(time.get(y))) {
+                num = i;
+                break;
+            } else {
+                x++;
+                y++;
+            }
         }
+
         return num;
     }
 
@@ -84,8 +71,9 @@ public class Main {
         basic.add(BP);
         basic.add(BR);
 
+        num++;
+
         int dow = ldt.getDayOfWeek().getValue();
-        int n = 0;
         switch (dow){
             case 1:
                 List<String> mon = new ArrayList<>();

@@ -7,7 +7,7 @@ import static core.Main.time;
 
 class Bot {
     static void bot() throws IOException {
-        String token = "token";
+        String token = "xoxb-364954023541-364589880980-bANhlnH5Xb5j60papLcslKyA";
         String Channel = "general";
         SlackletService slack = new SlackletService(token);
         slack.start();
