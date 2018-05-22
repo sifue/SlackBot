@@ -1,12 +1,10 @@
 package core;
 
-import groovy.json.internal.IO;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
 
-import static core.Bot.*;
+import static core.Bot.bot;
 
 
 public class Main {
@@ -83,6 +81,7 @@ public class Main {
                 mon.add(BR);
                 mon.add(PR);
                 mon.add(BR);
+                mon.add(BR);
                 basic.addAll(mon);
                 A = basic.get(num);
                 break;
@@ -94,6 +93,7 @@ public class Main {
                 tue.add(BR);
                 tue.add(UJ);
                 tue.add(BR);
+                tue.add(BR);
                 basic.addAll(tue);
                 A = basic.get(num);
                 break;
@@ -103,6 +103,7 @@ public class Main {
                     wed.add(UJ+"/"+EN);
                     wed.add(BR);
                 }
+                wed.add(BR);
                 basic.addAll(wed);
                 A = basic.get(num);
                 break;
@@ -114,6 +115,7 @@ public class Main {
                 thu.add(BR);
                 thu.add(PR);
                 thu.add(BR);
+                thu.add(BR);
                 basic.addAll(thu);
                 A = basic.get(num);
                 break;
@@ -124,6 +126,7 @@ public class Main {
                     fri.add(BR);
                 }
                 fri.add(SN);
+                fri.add(BR);
                 fri.add(BR);
                 basic.addAll(fri);
                 A = basic.get(num);
