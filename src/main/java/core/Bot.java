@@ -14,11 +14,14 @@ class Bot{
         String token = ResourceBundle.getBundle("credentials").getString("slack.bot_api_token");
         SlackletService slack = new SlackletService(token);
         ldt();
+        int n = time();
+        n++;
+        String num = Integer.toString(n);
         slack.addSlacklet(new Slacklet(){
             @Override
             public void onMentionedMessagePosted(SlackletRequest req,SlackletResponse resp){
                 String mention = req.getUserDisp();
-                resp.reply(mention + "さん、次の授業は" + curriculum(time()) + "です" + ldt());
+                resp.reply(mention + "さん、" + num + "時間目の授業は" + curriculum(time()) + "です" + ldt());
             }
         });
         slack.start();

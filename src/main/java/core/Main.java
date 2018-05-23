@@ -10,6 +10,7 @@ public class Main {
 
     public static void main(String args[]) throws IOException {
         System.out.println(curriculum(time()));
+        System.out.println(time());
         bot();
     }
 
@@ -28,7 +29,7 @@ public class Main {
         for (int i=0; i<7; i++){
             time.add(time.get(n).plusMinutes(60));
             n++;
-            if (i==3){
+            if (i==2){
                 time.add(LocalDateTime.of(year,month,dayofmonth,13,15));
                 n++;
             }
@@ -37,7 +38,7 @@ public class Main {
         int x = 0;
         int y = 1;
 
-        for (int i=0; i<7; i++){
+        for (int i=0; i<8; i++){
             if (ldt().isAfter(time.get(x)) && ldt().isBefore(time.get(y))){
                 num = i;
                 break;
@@ -57,13 +58,13 @@ public class Main {
         String PR ="プログラミング";
         String UJ ="大学受験/中学復習";
         String SN ="進路指導";
+        String BR ="放課後";
         String A = "";
 
         List<String> basic = new ArrayList<>();
         basic.add(PN);
         basic.add(PN);
         basic.add(BP);
-        num++;
         int dow = ldt().getDayOfWeek().getValue();
         switch (dow){
             case 1:
@@ -71,6 +72,7 @@ public class Main {
                 mon.add(EN);
                 mon.add(EN);
                 mon.add(PR);
+                mon.add(BR);
                 basic.addAll(mon);
                 A = basic.get(num);
                 break;
@@ -79,6 +81,7 @@ public class Main {
                 tue.add(CN + "/" + EN);
                 tue.add(CN + "/" + PR);
                 tue.add(UJ);
+                tue.add(BR);
                 basic.addAll(tue);
                 A = basic.get(num);
                 break;
@@ -86,7 +89,8 @@ public class Main {
                 List<String> wed = new ArrayList<>();
                 for (int i=0; i<3; i++){
                     wed.add(UJ);
-            }
+                }
+                wed.add(BR);
                 basic.addAll(wed);
                 A = basic.get(num);
                 break;
@@ -95,6 +99,7 @@ public class Main {
                 thu.add(UJ + "/" + BP);
                 thu.add(EN);
                 thu.add(PR);
+                thu.add(BR);
                 basic.addAll(thu);
                 A = basic.get(num);
                 break;
@@ -104,6 +109,7 @@ public class Main {
                     fri.add(CN + "/" + PR);
                 }
                 fri.add(SN);
+                fri.add(BR);
                 basic.addAll(fri);
                 A = basic.get(num);
                 break;
