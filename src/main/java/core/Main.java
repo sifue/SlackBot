@@ -20,13 +20,13 @@ public class Main {
         int dayofmonth = ldt.getDayOfMonth();
         int n = 0;
 
-        List<LocalDateTime> nexttime = new ArrayList<>();
-        nexttime.add((LocalDateTime.of(year,month,dayofmonth,9,45)));
+        List<LocalDateTime> time = new ArrayList<>();
+        time.add((LocalDateTime.of(year,month,dayofmonth,9,45)));
         for (int i=0; i<7; i++){
-            nexttime.add(nexttime.get(n).plusMinutes(60));
+            time.add(time.get(n).plusMinutes(60));
             n++;
             if (i==3){
-                nexttime.add(LocalDateTime.of(year,month,dayofmonth,13,15));
+                time.add(LocalDateTime.of(year,month,dayofmonth,13,15));
                 n++;
             }
         }
@@ -35,7 +35,7 @@ public class Main {
         int y = 1;
 
         for (int i=0; i<7; i++) {
-            if (ldt.isAfter(nexttime.get(x)) && ldt.isBefore(nexttime.get(y))) {
+            if (ldt.isAfter(time.get(x)) && ldt.isBefore(time.get(y))) {
                 num = i;
                 break;
             } else {
