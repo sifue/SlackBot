@@ -7,23 +7,20 @@ import org.riversun.slacklet.SlackletService;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
-import static core.Main.curriculum;
-import static core.Main.time;
+import static core.Main.*;
 
-class Bot {
-    static void bot() throws IOException {
+class Bot{
+    static void bot() throws IOException{
         String token = ResourceBundle.getBundle("credentials").getString("slack.bot_api_token");
         SlackletService slack = new SlackletService(token);
+        ldt();
         slack.addSlacklet(new Slacklet(){
             @Override
             public void onMentionedMessagePosted(SlackletRequest req,SlackletResponse resp){
                 String mention = req.getUserDisp();
-                resp.reply(mention + "さん、次の授業は" + curriculum(time()) + "です");
+                resp.reply(mention + "さん、次の授業は" + curriculum(time()) + "です" + ldt());
             }
-
         });
         slack.start();
-
-
     }
 }

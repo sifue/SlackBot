@@ -6,18 +6,21 @@ import java.util.*;
 
 import static core.Bot.bot;
 
-
 public class Main {
-    private static LocalDateTime ldt = LocalDateTime.now();
 
     public static void main(String args[]) throws IOException {
         System.out.println(curriculum(time()));
         bot();
     }
+
+    static LocalDateTime ldt(){
+        return LocalDateTime.now();
+    }
+
     static int time(){
-        int year = ldt.getYear();
-        int month = ldt.getMonth().getValue();
-        int dayofmonth = ldt.getDayOfMonth();
+        int year = ldt().getYear();
+        int month = ldt().getMonth().getValue();
+        int dayofmonth = ldt().getDayOfMonth();
         int n = 0;
 
         List<LocalDateTime> time = new ArrayList<>();
@@ -34,11 +37,11 @@ public class Main {
         int x = 0;
         int y = 1;
 
-        for (int i=0; i<7; i++) {
-            if (ldt.isAfter(time.get(x)) && ldt.isBefore(time.get(y))) {
+        for (int i=0; i<7; i++){
+            if (ldt().isAfter(time.get(x)) && ldt().isBefore(time.get(y))){
                 num = i;
                 break;
-            } else {
+            }else{
                 x++;
                 y++;
             }
@@ -61,7 +64,7 @@ public class Main {
         basic.add(PN);
         basic.add(BP);
         num++;
-        int dow = ldt.getDayOfWeek().getValue();
+        int dow = ldt().getDayOfWeek().getValue();
         switch (dow){
             case 1:
                 List<String> mon = new ArrayList<>();
@@ -104,7 +107,6 @@ public class Main {
                 basic.addAll(fri);
                 A = basic.get(num);
                 break;
-
         }
         return A;
     }
