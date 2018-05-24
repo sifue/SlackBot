@@ -21,7 +21,11 @@ class Bot{
             @Override
             public void onMentionedMessagePosted(SlackletRequest req,SlackletResponse resp){
                 String mention = req.getUserDisp();
-                resp.reply(mention + "さん、" + num + "時間目の授業は" + curriculum(time()) + "です" + ldt());
+                if (time()==6){
+                    resp.reply(mention + "さん、放課後です！" );
+                } else {
+                    resp.reply(mention + "さん、" + num + "時間目の授業は" + curriculum(time()) + "です");
+                }
             }
         });
         slack.start();

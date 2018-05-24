@@ -47,69 +47,76 @@ public class Main {
                 y++;
             }
         }
+        if (ldt().isAfter(time.get(6))){
+            num = 6;
+        }
         return num;
+    }
+    protected enum schedule{
+        ProjectN,
+        BasicProgram,
+        英語_英作文,
+        英語_多読,
+        中国語_会話,
+        中国語_文法,
+        プログラミング,
+        大学受験_中学復習,
+        進路学習,
+        放課後,
     }
 
     static String curriculum(int num){
-        String PN ="ProjectN";
-        String BP ="BasicProgram";
-        String EN ="英語";
-        String CN ="中国語";
-        String PR ="プログラミング";
-        String UJ ="大学受験/中学復習";
-        String SN ="進路指導";
-        String BR ="放課後";
         String A = "";
 
         List<String> basic = new ArrayList<>();
-        basic.add(PN);
-        basic.add(PN);
-        basic.add(BP);
+        basic.add(schedule.ProjectN.toString());
+        basic.add(schedule.ProjectN.toString());
+        basic.add(schedule.BasicProgram.toString());
         int dow = ldt().getDayOfWeek().getValue();
         switch (dow){
             case 1:
                 List<String> mon = new ArrayList<>();
-                mon.add(EN);
-                mon.add(EN);
-                mon.add(PR);
-                mon.add(BR);
+                mon.add(schedule.英語_英作文.toString());
+                mon.add(schedule.英語_多読.toString());
+                mon.add(schedule.プログラミング.toString());
+                mon.add(schedule.放課後.toString());
                 basic.addAll(mon);
                 A = basic.get(num);
                 break;
             case 2:
                 List<String> tue = new ArrayList<>();
-                tue.add(CN + "/" + EN);
-                tue.add(CN + "/" + PR);
-                tue.add(UJ);
-                tue.add(BR);
+                tue.add(schedule.中国語_会話.toString() + "/" + schedule.英語_英作文);
+                tue.add(schedule.中国語_会話.toString() + "/" + schedule.プログラミング);
+                tue.add(schedule.大学受験_中学復習.toString());
+                tue.add(schedule.放課後.toString());
                 basic.addAll(tue);
                 A = basic.get(num);
                 break;
             case 3:
                 List<String> wed = new ArrayList<>();
                 for (int i=0; i<3; i++){
-                    wed.add(UJ);
+                    wed.add(schedule.大学受験_中学復習.toString());
                 }
-                wed.add(BR);
+                wed.add(schedule.放課後.toString());
                 basic.addAll(wed);
                 A = basic.get(num);
                 break;
             case 4:
                 List<String> thu = new ArrayList<>();
-                thu.add(UJ + "/" + BP);
-                thu.add(EN);
-                thu.add(PR);
-                thu.add(BR);
+                thu.add(schedule.大学受験_中学復習.toString() + "/" + schedule.BasicProgram);
+                thu.add(schedule.英語_英作文.toString());
+                thu.add(schedule.プログラミング.toString());
+                thu.add(schedule.放課後.toString());
                 basic.addAll(thu);
                 A = basic.get(num);
                 break;
             case 5:
                 List<String> fri = new ArrayList<>();
                 for (int i=0; i<2; i++){
-                    fri.add(CN + "/" + PR);
+                    fri.add(schedule.中国語_文法.toString() + "/" + schedule.プログラミング);
                 }
-                fri.add(SN);
-                fri.add(BR);
+                fri.add(schedule.進路学習.toString());
+                fri.add(schedule.放課後.toString());
                 basic.addAll(fri);
                 A = basic.get(num);
                 break;
