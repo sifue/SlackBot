@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 import static core.Bot.bot;
+import static core.Schedule.schedule;
 
 public class Main {
 
@@ -52,73 +53,61 @@ public class Main {
         }
         return num;
     }
-    protected enum schedule{
-        ProjectN,
-        BasicProgram,
-        英語_英作文,
-        英語_多読,
-        中国語_会話,
-        中国語_文法,
-        プログラミング,
-        大学受験_中学復習,
-        進路学習,
-        放課後,
-    }
 
     static String curriculum(int num){
         String A = "";
 
-        List<String> basic = new ArrayList<>();
-        basic.add(schedule.ProjectN.toString());
-        basic.add(schedule.ProjectN.toString());
-        basic.add(schedule.BasicProgram.toString());
+        List<Schedule.schedule> basic = new ArrayList<>();
+        basic.add(schedule.ProjectN);
+        basic.add(schedule.ProjectN);
+        basic.add(schedule.BasicProgram);
         int dow = ldt().getDayOfWeek().getValue();
         switch (dow){
             case 1:
-                List<String> mon = new ArrayList<>();
-                mon.add(schedule.英語_英作文.toString());
-                mon.add(schedule.英語_多読.toString());
-                mon.add(schedule.プログラミング.toString());
-                mon.add(schedule.放課後.toString());
+                List<schedule> mon = new ArrayList<>();
+                mon.add(schedule.英語_英作文);
+                mon.add(schedule.英語_多読);
+                mon.add(schedule.プログラミング);
+                mon.add(schedule.放課後);
                 basic.addAll(mon);
-                A = basic.get(num);
+                A = basic.get(num).toString();
                 break;
             case 2:
-                List<String> tue = new ArrayList<>();
-                tue.add(schedule.中国語_会話.toString() + "/" + schedule.英語_英作文);
-                tue.add(schedule.中国語_会話.toString() + "/" + schedule.プログラミング);
-                tue.add(schedule.大学受験_中学復習.toString());
-                tue.add(schedule.放課後.toString());
+                List<schedule> tue = new ArrayList<>();
+                tue.add(schedule.中国語_会話か英語_英作文);
+                tue.add(schedule.中国語_会話かプログラミング);
+                tue.add(schedule.大学受験_中学復習);
+                tue.add(schedule.放課後);
                 basic.addAll(tue);
-                A = basic.get(num);
+                A = basic.get(num).toString();
                 break;
             case 3:
-                List<String> wed = new ArrayList<>();
+                List<schedule> wed = new ArrayList<>();
                 for (int i=0; i<3; i++){
-                    wed.add(schedule.大学受験_中学復習.toString());
+                    wed.add(schedule.大学受験_中学復習);
                 }
-                wed.add(schedule.放課後.toString());
+                wed.add(schedule.放課後);
                 basic.addAll(wed);
-                A = basic.get(num);
+                A = basic.get(num).toString();
                 break;
             case 4:
-                List<String> thu = new ArrayList<>();
-                thu.add(schedule.大学受験_中学復習.toString() + "/" + schedule.BasicProgram);
-                thu.add(schedule.英語_英作文.toString());
-                thu.add(schedule.プログラミング.toString());
-                thu.add(schedule.放課後.toString());
+                List<schedule> thu = new ArrayList<>();
+                thu.add(schedule.大学受験_中学復習かBasicProgram);
+                thu.add(schedule.英語_英作文);
+                thu.add(schedule.プログラミング);
+                thu.add(schedule.放課後);
                 basic.addAll(thu);
-                A = basic.get(num);
+                A = basic.get(num).toString();
                 break;
             case 5:
-                List<String> fri = new ArrayList<>();
+                List<schedule> fri = new ArrayList<>();
                 for (int i=0; i<2; i++){
-                    fri.add(schedule.中国語_文法.toString() + "/" + schedule.プログラミング);
+                    fri.add(schedule.中国語_文法かプログラミング);
                 }
-                fri.add(schedule.進路学習.toString());
-                fri.add(schedule.放課後.toString());
+                fri.add(schedule.進路学習);
+                fri.add(schedule.放課後);
                 basic.addAll(fri);
-                A = basic.get(num);
+                A = basic.get(num).toString();
                 break;
         }
         return A;
